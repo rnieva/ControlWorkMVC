@@ -1,0 +1,155 @@
+﻿@model ControlWorkMVC1.Models.DataRegs
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Work</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.typeWork, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*other way to show the list is like in timestart*@
+                @Html.DropDownListFor(model => model.typeWork, new SelectList(Model.WorkTypesList, "Value", "Text"), "Select", new { @class = "form-control" } ) 
+                @Html.ValidationMessageFor(model => model.typeWork, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.siteWork, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.siteWork, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.siteWork, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.zipCode, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.zipCode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.zipCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.detailsWork, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.detailsWork, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.detailsWork, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.dateWork, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dateWork, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dateWork, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.timeStartWork, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.timeStartWork, new MultiSelectList(new[] { "7:00", "7:15", "7:30", "7:45", "8:00", "8:15","8:30", "8:45",
+                "9:00", "9:15", "9:30", "9:45", "10:00", "10:15","10:30", "10:45","11:00", "11:15", "11:30", "11:45", "12:00", "12:15","12:30", "12:45","13:00",
+                "13:15","13:30", "13:45", "14:00", "14:15","14:30", "14:45","15:00", "15:15", "15:30", "15:45", "16:00", "16:15","16:30", "16:45",
+                "17:00", "17:15", "17:30", "17:45", "18:00", "18:15","18:30"}), "Select", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.timeStartWork, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.timeFinishWork, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.timeFinishWork, new MultiSelectList(new[] { "7:00", "7:15", "7:30", "7:45", "8:00", "8:15","8:30", "8:45",
+                "9:00", "9:15", "9:30", "9:45", "10:00", "10:15","10:30", "10:45","11:00", "11:15", "11:30", "11:45", "12:00", "12:15","12:30", "12:45","13:00",
+                "13:15","13:30", "13:45", "14:00", "14:15","14:30", "14:45","15:00", "15:15", "15:30", "15:45", "16:00", "16:15","16:30", "16:45",
+                "17:00", "17:15", "17:30", "17:45", "18:00", "18:15","18:30"}), "Select", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.timeFinishWork, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.timeWorked, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+                @Html.EditorFor(model => model.timeWorked, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.timeWorked, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group"> 
+            @Html.LabelFor(model => model.earned, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.earned, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.earned, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#timeFinishWork').change(function () {
+            var start = $('#timeStartWork').val();
+            var end = $('#timeFinishWork').val();
+            s = start.split(':');
+            e = end.split(':');
+            min = e[1] - s[1];
+            hour_carry = 0;
+            if (min < 0) {
+                min += 60;
+                hour_carry += 1;
+            }
+            hour = e[0] - s[0];
+            -hour_carry;
+            if (min == 0)
+                min = "00";
+            diff = hour + ":" + min;
+            if (hour > 0) {         //Error if time finsh is before to start or the worked time is less than 1 hour
+                $('#timeWorked').val(diff);
+                d = diff.split(':');
+                var hour = parseFloat(d[0]);
+                var min = parseFloat(d[1]) / 60;
+                var resultado = (hour + min) * 7.5;
+                str = resultado.toString();
+                var res = str.replace(",", ".");
+                $('#earned').val(res);
+            } else {
+                $('#timeWorked').val("Error Finishing Time");
+                $('#earned').val("0");
+            }
+        });
+    });
+
+</script>
+
+
+
+}

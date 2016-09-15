@@ -1,0 +1,99 @@
+﻿@model IEnumerable<ControlWorkMVC1.Models.DataRegs>
+<h2>Result</h2>
+<p>
+   
+    Total works: @ViewData["countRegs"]
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.typeWork)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.siteWork)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.zipCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.detailsWork)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateWork)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.timeStartWork)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.timeFinishWork)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.timeWorked)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.earned)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.paid)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        var typeClass = ""; //for colour the rows per week
+        DateTime DayWorked = DateTime.Parse(item.dateWork.ToString());
+        System.Globalization.CultureInfo ciCurr = System.Globalization.CultureInfo.CurrentCulture;
+        int weekNum = ciCurr.Calendar.GetWeekOfYear(DayWorked, System.Globalization.CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+        if ((weekNum % 2) != 0)
+        {
+            //typeClass = "table";
+            typeClass = "background-color:#FFCC33";
+        }
+        else
+        {
+            typeClass = "background-color:#FFFF33";
+        }
+        <tr id="tab" style=@typeClass>
+            <td>
+                @Html.DisplayFor(modelItem => item.typeWork)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.siteWork)
+            </td>
+            <td>
+                @* <a href="http://maps.google.com/maps?q= +  @Html.DisplayFor(modelItem => item.zipCode)" + target='_blank'>@Html.DisplayFor(modelItem => item.zipCode)</a> //link to google maps*@
+                @* <a id ="end = @Html.DisplayFor(modelItem => item.zipCode)" href="/LocationWorks/index.cshtml">@Html.DisplayFor(modelItem => item.zipCode)</a> //other way to go to locationWorks view*@
+                @Html.ActionLink(item.zipCode, "Index", "LocationWorks", new { id = item.zipCode }, null)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.detailsWork)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dateWork)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.timeStartWork)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.timeFinishWork)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.timeWorked)
+            </td>
+            <td>
+                £@Html.DisplayFor(modelItem => item.earned)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.paid)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

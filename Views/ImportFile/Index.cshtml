@@ -1,0 +1,53 @@
+﻿
+
+@{
+    ViewBag.Title = "Import Data from Excel File";
+}
+<h2>Import Data from Excel File</h2>
+
+
+@using (Html.BeginForm("Upload", "ImportFile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <table class="table">
+        <tr>
+            <td>File:
+                <input type="file" id ="UploadedFile" name="UploadedFile" onchange="checkFileName();" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" name="Submit" value="Import Data" />
+            </td>
+        </tr>
+    </table>
+}
+
+<input type="button" id="btn1" value="About Excel File Format" class="" />
+
+<div id="HelpImportFile" styles="width:50%;height:130px;display:none"></div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    
+    <script type="text/javascript">
+        //Check If the file upload it has correct name
+        function checkFileName() {
+            //    var filename = document.getElementById("UploadedFile").value;
+            //    //var filename = $('UploadedFile').val();
+            //    if (filename == 'ControlWorkSupermums.xlsx')
+            //        alert("s")
+            //    else
+            //        alert("n")
+            //}
+        }
+        $(document).ready(function () {
+            $('#btn1').click(function () {
+                var url = '/ImportFile/HelpImportFile';
+                $.post(url, function () {
+                    $('#HelpImportFile').load(url);
+                });
+            });
+        });
+    </script>
+}

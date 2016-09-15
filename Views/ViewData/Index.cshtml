@@ -1,0 +1,241 @@
+﻿@model IEnumerable<ControlWorkMVC1.Models.DataRegs>
+
+@{
+    ViewBag.Title = "Data Works";
+}
+
+<h2>Data Works</h2>
+
+@*<p>
+        Total Earned: £@ViewData["totalEarned"]
+    </p>*@
+<table class="table">
+    <tr>
+        <th>
+            Type Work Earned:
+        </th>
+    </tr>
+    <tr>
+        <td>
+            Total Earned: £@ViewData["totalEarned"]
+        </td>
+        <td>
+            Total Earned AfterSchools: £@ViewData["earnedAfterSchools"]
+        </td>
+        <td>
+            Total Earned Creche: £@ViewData["earnerCreche"]
+        </td>
+        <td>
+            Total Earned BreakfastSchools: £@ViewData["earnedBreakfastSchools"]
+        </td>
+        <td>
+            Total Earned Nursery: £@ViewData["earnedNursery"]
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Total Works: @ViewData["countRegs"]
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Week Number
+            @foreach (int infoNumerOfWeek in (List<int>)ViewData["infoNumerOfWeek"])
+            {
+                <option value="@infoNumerOfWeek">@infoNumerOfWeek</option>
+            }
+        </th>
+        <th>
+            Earned per week
+            @foreach (decimal earnedWeek in (List<decimal>)ViewData["earnedWeek"])
+            {
+                <option value="@earnedWeek">£@earnedWeek</option>
+            }
+        </th>
+        <th>
+            Worked Time per week
+            @foreach (decimal workedTimePerWeek in (List<decimal>)ViewData["timeWorkedPerfWeek"])
+            {
+                //string tempTime = TimeSpan.FromMinutes((double)workedTimePerWeek).ToString(); //show dd:hh:mm
+
+                double hours = Math.Floor((double)workedTimePerWeek);
+                double minutes = ((double)workedTimePerWeek - hours) * 60.0;
+                int H = (int)Math.Floor(hours);
+                int M = (int)Math.Floor(minutes);
+                string tempTime = H.ToString() + ":" + String.Format("{00:00}", M);
+                <option value="@tempTime">@tempTime</option>
+
+            }
+        </th>
+    </tr>
+
+</table>
+
+<p>
+    <img src="@Url.Action("ReportChartEaernedPerWeek")" alt="ReportChartEaernedPerWeek" />
+
+    <img src="@Url.Action("ReportChartEaernedPerTypeWork")" alt="ReportChartEaernedPerTypeWork" />
+</p>
+
+
+<table class="table">
+        <tr>
+            <th>
+                    <strong>Type of work </strong>
+                    <select id="typeWork" name="typeWork">
+                        <option value="After%20School">After School</option>
+                        <option value="Nursery">Nursery</option>
+                        <option value="Creche">Créche</option>
+                        <option value="Babysitting">Babysitting</option>
+                        <option value="Nanny">Nanny</option>
+                        <option value="Breakfast%20Club">Breakfast Club</option>
+                        <option value="Any%20Job">Any Job</option>
+                    </select>
+            </th>
+        </tr>
+        <tr>
+           <th>
+            <strong><p>Start Date</p> </strong>
+            <label for="day_start">Day</label>
+            <select id="day_start" name="day_start" />
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+            <option>13</option>
+            <option>14</option>
+            <option>15</option>
+            <option>16</option>
+            <option>17</option>
+            <option>18</option>
+            <option>19</option>
+            <option>20</option>
+            <option>21</option>
+            <option>22</option>
+            <option>23</option>
+            <option>24</option>
+            <option>25</option>
+            <option>26</option>
+            <option>27</option>
+            <option>28</option>
+            <option>29</option>
+            <option>30</option>
+            <option>31</option>
+            </select> -
+            <select id="month_start" name="month_start" />
+            <option value="1">January</option>
+            <option value="2" selected>February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+            </select> -
+            <label for="year_start">Year</label>
+            <select id="year_start" name="year_start" />
+            <option>2016</option>
+            <option>2017</option>
+            <option>2018</option>
+            </select>
+        </th>
+       </tr>
+        <tr>
+            <th>
+                <strong><p>Finish Date </p></strong>
+                <label for="day_finish">Day</label>
+                <select id="day_finish" name="day_finish" />
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19</option>
+                <option>20</option>
+                <option>21</option>
+                <option>22</option>
+                <option>23</option>
+                <option>24</option>
+                <option>25</option>
+                <option>26</option>
+                <option>27</option>
+                <option>28</option>
+                <option>29</option>
+                <option>30</option>
+                <option>31</option>
+                </select> -
+                <select id="month_finish" name="month_finish" />
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4" selected>April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+                </select> -
+                <label for="year_finish">Year</label>
+                <select id="year_finish" name="year_finish" />
+                <option>2016</option>
+                <option>2017</option>
+                <option>2018</option>
+                </select>
+            </th>
+        </tr>
+</table>
+<input type="button" id="btn1" value="Query" class="btn btn-default" />
+
+<div id="selectSearch" styles="width:50%;height:130px;display:none"></div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script>
+    $(document).ready(function () {
+        $('#btn1').click(function () {
+            var typeWork = $("#typeWork").val();
+            var daystart = $("#day_start").val();
+            var monthstart = $("#month_start").val();
+            var yearstart = $("#year_start").val();
+            var dateStart = daystart + '/' + monthstart + '/' + yearstart;
+            var dayfinish = $("#day_finish").val();
+            var monthfinish = $("#month_finish").val();
+            var yearfinish = $("#year_finish").val();
+            var dateFinish = dayfinish + '/' + monthfinish + '/' + yearfinish;
+            var url = '/ViewData/Select?typeWork=' + typeWork + '&dateStart=' + dateStart + '&dateFinish=' + dateFinish;
+            $.post(url, typeWork, function () {
+                $('#selectSearch').load(url);
+            });
+        });
+    });
+   
+</script>
+}
