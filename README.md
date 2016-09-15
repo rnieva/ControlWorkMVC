@@ -1,8 +1,8 @@
 # ControlWorkMVC
-A self-taught project to learn more about C#, MVC, Maps and more design tools.
+A self-taught project to learn more about Model–View–Controller (MVC),C#, Maps and more design tools.
 <p>Control Work is a tool to manage work hours. As an example chilcare agency has been use, but any other type of work can be use with some code tweaks, to make it specific
 
-<p>The user can:
+**The user can:**
 
 - Create a new work.
 - Edit any work from the work list.
