@@ -21,8 +21,8 @@ A self-taught project to learn more about Model–View–Controller (MVC),C#, Ma
 
 Main Screen
 <p>
-![alt tag](https://raw.github.com/rnieva/ControlWorkMVC/master/MainScreen.png)
 
+![alt tag](https://raw.github.com/rnieva/ControlWorkMVC/master/MainScreen.png)
 Create Work (Form)
 ![alt tag](https://raw.github.com/rnieva/ControlWorkMVC/master/CreateWorkScreen.png)
 
